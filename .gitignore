@@ -6,6 +6,8 @@
 Include
 Lib
 Scripts
+.gitignore
+pyenv.cfg
 
 # Ignora todos los archivos de texto
 # *.txt
