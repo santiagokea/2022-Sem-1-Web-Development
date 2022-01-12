@@ -1,12 +1,16 @@
-from bottle import run, get
+from bottle import run, get, static_file, template, view
 
 
+##############################
+@get("/app.css")
+def do():
+  return static_file("app.css", root=".")
 
 ##############################
 @get("/")
+# @view("index.html")
 def do():
-  xxx
-  return "x"
+  return template("index.html", title="My App")
 
 
 
@@ -14,4 +18,4 @@ def do():
 
 
 ##############################
-run(host="127.0.0.1", port=55555, debug=True, reloader=True)
+run(host="127.0.0.1", port=5555, debug=True, reloader=True)
