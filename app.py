@@ -5,6 +5,7 @@ from bottle import run, get
 ##############################
 @get("/")
 def do():
+  xxx
   return "x"
 
 
