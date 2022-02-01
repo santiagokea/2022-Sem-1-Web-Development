@@ -1,13 +1,20 @@
 from bottle import get, run, static_file, view
 
+# dictionary
+person = {"id":"1", "name":"Santiago"}
+  # person["last_name"] = "Donoso"
+
+##############################
+@get("/person/<person_id>")
+def _(person_id):
+  return person_id
+
+
+
 ##############################
 @get("/app.css")
 def _():
   return static_file("app.css", root=".")
-
-
-
-
 
 
 ##############################
@@ -24,11 +31,31 @@ def _():
 
 ##############################
 @get("/items")
+@view("items")
 def _():
-  letters = ["a", "b", "c"]
-  print("#"*30)
-  print(letters)
-  return letters
+  letters = ["a", "c", "x"]
+  # ternary
+  return "yes" if "x" in letters else "no"
+
+
+
+
+
+  # print(type(letters))
+  # letters.append("d")
+  # print( dir(letters) )
+  # is_b_in_list = "no"
+  # if "b" in letters: is_b_in_list = "yes"
+
+  # if "b" in letters:
+  #   pass
+  # else:
+  #   pass
+
+  # letters = ["a", "b", "c"]
+  # print("#"*30)
+  # print(letters)
+  # return letters
 
 ##############################
 @get("/item")
