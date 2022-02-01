@@ -2,9 +2,19 @@ from bottle import get, run
 
 ##############################
 @get("/")
-def show_index_page():
+def _():
   print("I am here")
   return "Home"
+
+##############################
+@get("/items")
+def _():
+  return "items"
+
+##############################
+@get("/item")
+def _():
+  return "item"
 
 ##############################
 # port from 0 to 65535
