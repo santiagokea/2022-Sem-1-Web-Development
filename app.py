@@ -1,15 +1,34 @@
-from bottle import get, run 
+from bottle import get, run, static_file, view
+
+##############################
+@get("/app.css")
+def _():
+  return static_file("app.css", root=".")
+
+
+
+
+
 
 ##############################
 @get("/")
+@view("index.html")
 def _():
-  print("I am here")
-  return "Home"
+  return 
+
+
+
+
+
+
 
 ##############################
 @get("/items")
 def _():
-  return "items"
+  letters = ["a", "b", "c"]
+  print("#"*30)
+  print(letters)
+  return letters
 
 ##############################
 @get("/item")
