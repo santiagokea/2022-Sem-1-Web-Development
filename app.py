@@ -1,21 +1,35 @@
-from bottle import run, get, static_file, template, view
-
-
-##############################
-@get("/app.css")
-def do():
-  return static_file("app.css", root=".")
+from bottle import get, run 
 
 ##############################
 @get("/")
-# @view("index.html")
-def do():
-  return template("index.html", title="My App")
-
-
-
-
-
+def show_index_page():
+  print("I am here")
+  return "Home"
 
 ##############################
-run(host="127.0.0.1", port=5555, debug=True, reloader=True)
+# port from 0 to 65535
+# reservedfrom 0 to 1024
+
+run( host="127.0.0.1", port=3333, debug=True, reloader=True  )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
