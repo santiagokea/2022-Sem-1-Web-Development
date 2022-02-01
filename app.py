@@ -14,7 +14,12 @@ def _():
 ##############################
 @get("/item")
 def _():
-  return "item"
+  name = "Santiago" # string - text
+  year = 2022 # integer
+  return f"Hi {name} the year is {year}" # f string 
+  # return "Hi " + name + " it is " + str(year) 
+  # return str(year) # type-cast or cast
+
 
 ##############################
 # port from 0 to 65535
