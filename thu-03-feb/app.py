@@ -96,9 +96,9 @@ def _():
 @delete("/items/<item_id>")
 def _(item_id):
   # VALIDATE
-  for item in items:
+  for index, item in enumerate(items):
     if item["id"] == item_id:
-      items.pop()
+      items.pop(index)
       return "item deleted"
 
   # No item found
