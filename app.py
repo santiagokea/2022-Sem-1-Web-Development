@@ -21,6 +21,19 @@ def _():
   return json.dumps(items)
   # return str(items)
 
+##############################
+@get("/items/<item_id>")
+def _(item_id):
+  # {"id":"3", "name":"c"}
+  for item in items:
+    if item["id"] == item_id:
+      return item
+      
+  return "Item not found"
+
+
+
+
 ##############################7
 # Query strings
 # Every other variable after the 1st one start with & (ampersant)
@@ -57,7 +70,9 @@ def _():
   if len(request.forms.get("item_name")) < 2:
     response.status = 400
     return "item_name must be at least 2 characters"
-
+  if len(request.forms.get("item_name")) > 20:
+    response.status = 400
+    return "item_name must be less than 20 characters"
 
   item_id = str( uuid.uuid4() )
   item_name = request.forms.get("item_name")
