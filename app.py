@@ -1,4 +1,4 @@
-from bottle import run, get, response, request, post
+from bottle import run, get, response, request, post, delete
 import json
 import uuid # 1 billion per second will take 200
 
@@ -17,6 +17,7 @@ def _():
 
 ##############################
 @get("/items")
+# @get("/items/")
 def _():
   return json.dumps(items)
   # return str(items)
@@ -24,11 +25,17 @@ def _():
 ##############################
 @get("/items/<item_id>")
 def _(item_id):
-  # {"id":"3", "name":"c"}
+  
+  # VALIDATION
+  if not item_id:
+    response.status = 400
+    return "item_id is missing"
+
   for item in items:
     if item["id"] == item_id:
       return item
-      
+
+  response.status = 400    
   return "Item not found"
 
 
@@ -84,6 +91,18 @@ def _():
   # print( type(item_id) )
   return item_id
 
+
+##############################
+@delete("/items/<item_id>")
+def _(item_id):
+  # VALIDATE
+  for item in items:
+    if item["id"] == item_id:
+      items.pop()
+      return "item deleted"
+
+  # No item found
+  return "item not found"
 
 ##############################
 #KWARGS
