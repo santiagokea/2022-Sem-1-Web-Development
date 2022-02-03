@@ -1,6 +1,6 @@
 from bottle import run, get, response, request, post
 import json
-
+import uuid # 1 billion per second will take 200
 
 items = [
   {"id":"1", "name":"a"},
@@ -49,8 +49,25 @@ def _(brand_name, item_color):
 ##############################
 @post("/items")
 def _():
-  user_name = request.forms.get("name")
-  return f"Hi {user_name}"
+
+  # VALIDATION
+  if not request.forms.get("item_name"):
+    response.status = 400
+    return "item_name is missing"
+  if len(request.forms.get("item_name")) < 2:
+    response.status = 400
+    return "item_name must be at least 2 characters"
+
+
+  item_id = str( uuid.uuid4() )
+  item_name = request.forms.get("item_name")
+  item_price = request.forms.get("item_price")
+  item = {"id":item_id, "name":item_name, "item_price": item_price}
+  items.append(item)
+
+  # print("#"*30)
+  # print( type(item_id) )
+  return item_id
 
 
 ##############################
