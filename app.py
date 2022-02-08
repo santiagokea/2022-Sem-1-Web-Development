@@ -1,4 +1,4 @@
-from bottle import error, get, run, static_file, view
+from bottle import error, get, post, redirect, request, run, static_file, view
 
 items = [
   {"id":"b0bafe8f-de0e-4fb2-b3cb-f284e9d5e2ce", "name":"a", "price": 10},
@@ -36,6 +36,12 @@ def _():
 def _():
   return
 
+##############################
+@post("/delete-item")
+def _():
+  # VALIDATE
+  item_id = request.forms.get("item_id")
+  return redirect("/items")
 
 
 
