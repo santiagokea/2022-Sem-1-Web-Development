@@ -9,9 +9,9 @@
       <div class="item">
 
         <form action="/delete-item" method="POST">
-          <input name="item_id" type="text" value='{{ item["id"] }}'>
-          <div>name: xxxxx</div>
-          <div>price: xxxxx</div>
+          <input name="item_id" type="hidden" value='{{ item["id"] }}'>
+          <div>name: {{ item["name"] }}</div>
+          <div>price: {{ item["price"] }}</div>
           <button>🗑️</button>
         </form>
 

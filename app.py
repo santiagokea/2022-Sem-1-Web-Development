@@ -41,6 +41,12 @@ def _():
 def _():
   # VALIDATE
   item_id = request.forms.get("item_id")
+  # Delete the item for if enumarate
+  for index, item in enumerate(items):
+    if item["id"] == item_id:
+      items.pop(index)
+      return redirect("/items")
+
   return redirect("/items")
 
 
