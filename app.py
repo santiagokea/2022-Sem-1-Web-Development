@@ -1,4 +1,9 @@
-from bottle import error, get, run, view
+from bottle import error, get, run, static_file, view
+
+##############################
+@get("/app.css")
+def _():
+  return static_file("app.css", root=".")
 
 ##############################
 @get("/")
