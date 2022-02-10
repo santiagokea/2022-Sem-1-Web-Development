@@ -48,7 +48,8 @@ def _():
 @view("signup-ok")
 def _():
   user_email = request.params.get("user-email")
-  return dict(user_email=user_email)
+  user_name = request.params.get("user-name")
+  return dict(user_email=user_email, user_name=user_name)
 
 
 ##############################
@@ -77,14 +78,14 @@ def _():
 @post("/signup")
 def _():
   # VALIDATE
-  if not request.forms.get("user_email"):
-    return "missing user_email"
+
+
   user_id = str(uuid.uuid4())
   user_email = request.forms.get("user_email")
-  user = {"id":user_id, "email":user_email}
+  user_name = request.forms.get("user_name")
+  user = {"id":user_id, "email":user_email, "name":user_name}
   users.append(user)
-  print(user_email)
-  return redirect(f"/signup-ok?user-email={user_email}")
+  return redirect(f"/signup-ok?user-email={user_email}&user-name={user_name}")
 
 
 ##############################
