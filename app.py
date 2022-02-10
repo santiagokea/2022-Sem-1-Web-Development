@@ -101,9 +101,18 @@ def _():
 @post("/login")
 def _():
   # VALIDATE
+  # FIRST THING: Always check if the vriable was passed in the form
   if not request.forms.get("user_email"):
     return redirect("/login")
   if not re.match(regex_email, request.forms.get("user_email")):
+    return redirect("/login")
+
+  # FIRST THING: Always check if the vriable was passed in the form
+  if not request.forms.get("user_password"):
+    return redirect("/login")
+  if len(request.forms.get("user_password")) < 6:
+    return redirect("/login")
+  if len(request.forms.get("user_password")) > 50:
     return redirect("/login")
 
   # SUCCESS
