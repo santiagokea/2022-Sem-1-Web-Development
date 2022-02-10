@@ -43,10 +43,12 @@ def _():
   return
 
 ##############################
-@get("/signup-ok")
+# query string expected with user-email
+@get("/signup-ok") 
 @view("signup-ok")
 def _():
-  return
+  user_email = request.params.get("user-email")
+  return dict(user_email=user_email)
 
 
 ##############################
@@ -82,7 +84,7 @@ def _():
   user = {"id":user_id, "email":user_email}
   users.append(user)
   print(user_email)
-  return "x"
+  return redirect("/signup-ok?user-email=xxx")
 
 
 ##############################
