@@ -7,8 +7,22 @@
   </h1>
   
   <form action="/login" method="post">
-    <input name="user_email" type="text" placeholder="email">
-    <input name="user_password" type="password" placeholder="password">
+    
+    <div>
+      % if error == "user_email":
+        <h1>
+          Please enter a valid email
+        </h1>
+      % end 
+      <label>Email</label>
+      <input name="user_email" type="text" placeholder="email">
+    </div>
+    
+    <div>
+      <label>Pasword ( min 6 max 50 characters )</label>
+      <input name="user_password" type="password" placeholder="password">
+    </div>
+    
     <button>login</button>
   </form>
   

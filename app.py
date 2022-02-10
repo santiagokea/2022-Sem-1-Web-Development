@@ -62,10 +62,14 @@ def _():
 
 
 ##############################
+# Query string will be used in this route
+# Eg: /login?error=user_email
+# Eg: /login?error=user_password
 @get("/login")
 @view("login")
 def _():
-  return
+  error = request.params.get("error")
+  return dict(error=error)
 
 
 ##############################
@@ -103,9 +107,9 @@ def _():
   # VALIDATE
   # FIRST THING: Always check if the vriable was passed in the form
   if not request.forms.get("user_email"):
-    return redirect("/login")
+    return redirect("/login?error=user_email")
   if not re.match(regex_email, request.forms.get("user_email")):
-    return redirect("/login")
+    return redirect("/login?error=user_email")
 
   # FIRST THING: Always check if the vriable was passed in the form
   if not request.forms.get("user_password"):
