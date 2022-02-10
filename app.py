@@ -11,6 +11,7 @@ import signup_ok_get    # GET
 
 import signup_post      # POST
 import login_post       # POST
+import delete_item_post # POST
 
 ##############################
 @get("/app.css")
