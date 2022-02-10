@@ -1,7 +1,17 @@
 % include("header", title="Login")
 
-<h1>
-  Login
-</h1>
+<main>
+  
+  <h1>
+    Login
+  </h1>
+  
+  <form action="/login" method="post">
+    <input name="user_email" type="text" placeholder="email">
+    <input name="user_password" type="password" placeholder="password">
+    <button>login</button>
+  </form>
+  
+</main>
 
 % include("footer")

@@ -1,6 +1,6 @@
 from bottle import error, get, post, redirect, request, run, static_file, view
 import uuid
-
+import re
 
 items = [
   {"id":"b0bafe8f-de0e-4fb2-b3cb-f284e9d5e2ce", "name":"a", "price": 10},
@@ -12,6 +12,8 @@ items = [
 # must have an id and an email
 users = []
 
+regex_email = '^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$'
+
 ##############################
 @get("/app.css")
 def _():
@@ -22,6 +24,13 @@ def _():
 @view("index")
 def _():
   return
+
+##############################
+@get("/admin")
+@view("admin")
+def _():
+  return
+
 
 ##############################
 @get("/items")
@@ -87,6 +96,18 @@ def _():
   users.append(user)
   return redirect(f"/signup-ok?user-email={user_email}&user-name={user_name}")
 
+
+##############################
+@post("/login")
+def _():
+  # VALIDATE
+  if not request.forms.get("user_email"):
+    return redirect("/login")
+  if not re.match(regex_email, request.forms.get("user_email")):
+    return redirect("/login")
+
+  # SUCCESS
+  return redirect("/admin")
 
 ##############################
 @error(404)
