@@ -84,7 +84,7 @@ def _():
   user = {"id":user_id, "email":user_email}
   users.append(user)
   print(user_email)
-  return redirect("/signup-ok?user-email=xxx")
+  return redirect(f"/signup-ok?user-email={user_email}")
 
 
 ##############################
