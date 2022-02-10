@@ -9,21 +9,22 @@ items = [
 ]
 
 
-# must have an id and an email
-users = []
-
 regex_email = '^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$'
+
+##############################
+import home         # GET  
+import signup       # GET   
+import login        # GET
+import users        # GET
 
 ##############################
 @get("/app.css")
 def _():
   return static_file("app.css", root=".")
 
-##############################
-@get("/")
-@view("index")
-def _():
-  return
+              
+
+
 
 ##############################
 @get("/admin")
@@ -38,18 +39,7 @@ def _():
 def _():
   return dict(items=items)
 
-##############################
-@get("/users")
-@view("users")
-def _():
-  return dict(users=users)
 
-
-##############################
-@get("/signup")
-@view("signup")
-def _():
-  return
 
 ##############################
 # query string expected with user-email
@@ -61,17 +51,7 @@ def _():
   return dict(user_email=user_email, user_name=user_name)
 
 
-##############################
-# Query string will be used in this route
-# Eg: /login?error=user_email
-# Eg: /login?error=user_password
-# Eg: /login?error=user_password&user_email=a@a.cm
-@get("/login")
-@view("login")
-def _():
-  error = request.params.get("error")
-  user_email = request.params.get("user_email")
-  return dict(error=error, user_email=user_email)
+
 
 
 ##############################
