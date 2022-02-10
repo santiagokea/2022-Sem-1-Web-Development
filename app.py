@@ -1,4 +1,6 @@
 from bottle import error, get, post, redirect, request, run, static_file, view
+import uuid
+
 
 items = [
   {"id":"b0bafe8f-de0e-4fb2-b3cb-f284e9d5e2ce", "name":"a", "price": 10},
@@ -6,6 +8,9 @@ items = [
   {"id":"43119a37-98a0-4e77-8ff4-b724cbaf0d3d", "name":"c", "price": 30}
 ]
 
+
+# must have an id and an email
+users = []
 
 ##############################
 @get("/app.css")
@@ -25,6 +30,13 @@ def _():
   return dict(items=items)
 
 ##############################
+@get("/users")
+@view("users")
+def _():
+  return dict(users=users)
+
+
+##############################
 @get("/signup")
 @view("signup")
 def _():
@@ -36,6 +48,9 @@ def _():
 def _():
   return
 
+
+##############################
+##############################
 ##############################
 @post("/delete-item")
 def _():
@@ -49,6 +64,18 @@ def _():
 
   return redirect("/items")
 
+##############################
+@post("/signup")
+def _():
+  # VALIDATE
+  if not request.forms.get("user_email"):
+    return "missing user_email"
+  user_id = str(uuid.uuid4())
+  user_email = request.forms.get("user_email")
+  user = {"id":user_id, "email":user_email}
+  users.append(user)
+  print(user_email)
+  return "x"
 
 
 ##############################

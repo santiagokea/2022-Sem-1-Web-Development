@@ -13,7 +13,7 @@ body{
 }
 nav{
   display: grid;
-  grid-template-columns: 100fr 100fr 100fr 100fr;
+  grid-template-columns: 100fr 100fr 100fr 100fr 100fr;
   align-items: center;
   justify-items: center;
   width: 100%;

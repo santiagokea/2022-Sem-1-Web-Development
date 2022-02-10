@@ -2,6 +2,11 @@
 
 <main>
 
+  % if items == []:
+    <div>
+      Sorry, no items to show
+    </div>
+  % end
 
   <div id="items">
 
@@ -11,7 +16,7 @@
         <form action="/delete-item" method="POST">
           <input name="item_id" type="hidden" value='{{ item["id"] }}'>
           <div>name: {{ item["name"] }}</div>
-          <div>price: {{ item["price"] }}</div>
+          <div>price: {{f'{item["price"]:.2f}'}}</div>
           <button>🗑️</button>
         </form>
 
