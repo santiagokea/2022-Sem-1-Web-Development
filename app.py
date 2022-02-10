@@ -43,6 +43,13 @@ def _():
   return
 
 ##############################
+@get("/signup-ok")
+@view("signup-ok")
+def _():
+  return
+
+
+##############################
 @get("/login")
 @view("login")
 def _():
