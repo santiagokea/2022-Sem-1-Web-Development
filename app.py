@@ -1,4 +1,7 @@
 from bottle import get, post, response, request, run, view
+import uuid
+
+cookie_secret = "this is the secret key"
 
 ##############################
 @get("/login")
@@ -6,12 +9,12 @@ from bottle import get, post, response, request, run, view
 def _():
   return 
 
-
 ##############################
 @get("/admin")
 @view("admin")
 def _():
-  return
+  user_email = request.get_cookie("user_email", secret=cookie_secret)
+  return dict(user_email=user_email)
 
 
 
@@ -21,7 +24,9 @@ def _():
   # VALIDATE
   user_email = request.forms.get("user_email")
   print(user_email)
-  response.set_cookie("user_email", user_email)
+  response.set_cookie("user_email", user_email, secret=cookie_secret)
+  user_session_id = str(uuid.uuid4())
+  response.set_cookie("uuid4", user_session_id)
   return "x"
 
 
