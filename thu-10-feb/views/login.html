@@ -1,0 +1,38 @@
+% include("header", title="Login")
+
+<main>
+  
+  <h1>
+    Login
+  </h1>
+  
+  <form action="/login" method="post">
+    
+    <div>
+      % if error == "user_email":
+        <h1>
+          Please enter a valid email
+        </h1>
+      % end 
+      <label>Email</label>
+      <input name="user_email" type="text" 
+        placeholder="email" 
+        value="{{ user_email or '' }}">
+    </div>
+    
+    <div>
+      % if error == "user_password":
+        <h1>
+          Please enter a valid password
+        </h1>
+      % end       
+      <label>Pasword ( min 6 max 50 characters )</label>
+      <input name="user_password" type="password" placeholder="password">
+    </div>
+    
+    <button>login</button>
+  </form>
+  
+</main>
+
+% include("footer")
