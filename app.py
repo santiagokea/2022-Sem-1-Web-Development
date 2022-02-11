@@ -6,6 +6,15 @@ from bottle import get, post, response, request, run, view
 def _():
   return 
 
+
+##############################
+@get("/admin")
+@view("admin")
+def _():
+  return
+
+
+
 ##############################
 @post("/login")
 def _():
