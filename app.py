@@ -1,4 +1,4 @@
-from bottle import get, run, view
+from bottle import get, post, run, view
 
 ##############################
 @get("/login")
@@ -7,7 +7,9 @@ def _():
   return 
 
 ##############################
-
+@post("/login")
+def _():
+  return "x"
 
 
 ##############################
