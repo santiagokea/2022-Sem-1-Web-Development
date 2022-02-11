@@ -1,5 +1,22 @@
 from bottle import get, post, redirect, response, request, run, view
 import uuid
+import jwt
+import time
+
+user = {
+  "user_name" : "a",
+  "user_last_name" : "aa",
+  "user_age" : 1,
+  "user_email" : "a@a.com",
+  "iat" : time.time()
+}
+
+encoded_jwt = jwt.encode(user, "yes super key", algorithm="HS256")
+print("#"*30)
+print(encoded_jwt)
+
+
+
 
 
 cookie_secret = "this is the secret key"
