@@ -1,4 +1,4 @@
-from bottle import get, post, request, run, view
+from bottle import get, post, response, request, run, view
 
 ##############################
 @get("/login")
@@ -9,8 +9,10 @@ def _():
 ##############################
 @post("/login")
 def _():
+  # VALIDATE
   user_email = request.forms.get("user_email")
   print(user_email)
+  response.set_cookie("user_email", user_email)
   return "x"
 
 
