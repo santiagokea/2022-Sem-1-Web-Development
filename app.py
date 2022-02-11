@@ -1,7 +1,9 @@
-from bottle import get, post, response, request, run, view
+from bottle import get, post, redirect, response, request, run, view
 import uuid
 
 cookie_secret = "this is the secret key"
+sessions = []
+
 
 ##############################
 @get("/login")
@@ -13,6 +15,10 @@ def _():
 @get("/admin")
 @view("admin")
 def _():
+  user_session_id = request.get_cookie("uuid4")
+  # compare the uuid from the cookie to the uuid from the sessions
+  if user_session_id not in sessions:
+    return redirect("/login")
   user_email = request.get_cookie("user_email", secret=cookie_secret)
   return dict(user_email=user_email)
 
@@ -26,8 +32,9 @@ def _():
   print(user_email)
   response.set_cookie("user_email", user_email, secret=cookie_secret)
   user_session_id = str(uuid.uuid4())
+  sessions.append(user_session_id)
   response.set_cookie("uuid4", user_session_id)
-  return "x"
+  return redirect("/admin")
 
 
 ##############################
