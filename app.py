@@ -1,8 +1,17 @@
 from bottle import get, post, redirect, response, request, run, view
 import uuid
 
+
 cookie_secret = "this is the secret key"
 sessions = []
+
+##############################
+@get("/logout")
+def _():
+  user_session_id = request.get_cookie("uuid4")
+  sessions.remove(user_session_id)
+  return redirect("/login")
+
 
 
 ##############################
