@@ -1,4 +1,4 @@
-from bottle import get, post, run, view
+from bottle import get, post, request, run, view
 
 ##############################
 @get("/login")
@@ -9,6 +9,8 @@ def _():
 ##############################
 @post("/login")
 def _():
+  user_email = request.forms.get("user_email")
+  print(user_email)
   return "x"
 
 
