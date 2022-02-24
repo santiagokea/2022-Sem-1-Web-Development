@@ -2,6 +2,7 @@ from bottle import get, post, request, response, run
 import os
 import uuid
 import imghdr
+from password import gmail_password
 
 import smtplib, ssl
 from email.mime.text import MIMEText
@@ -12,7 +13,7 @@ from email.mime.multipart import MIMEMultipart
 def _():
   sender_email = "2022webemail@gmail.com"
   receiver_email = "2022webemail@gmail.com"
-  password = "2022webemailpassword"
+  password = gmail_password
 
   message = MIMEMultipart("alternative")
   message["Subject"] = "My Company"
