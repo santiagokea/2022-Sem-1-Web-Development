@@ -16,8 +16,10 @@ def _():
   # Validate extension
   if file_extension not in (".png", ".jpeg", ".jpg"):
     return "image not allowed"
-  if file_extension == ".jpg": file_extension = ".jpeg"
   
+  # overwrite jpg to jpeg so imghdr will pass validation
+  if file_extension == ".jpg": file_extension = ".jpeg"
+
   image_id = str(uuid.uuid4())
   # Create new image name
   image_name = f"{image_id}{file_extension}"
