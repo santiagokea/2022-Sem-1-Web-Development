@@ -12,10 +12,12 @@ def _():
   print(file_name)
   print(file_extension)
   # get image extension happy_face.jpeg
-  image_id = str(uuid.uui4())
+  image_id = str(uuid.uuid4())
   # 444333-44556-66665545.png
   image_name = f"{image_id}{file_extension}"
   print(image_name)
+  # Save the image
+  image.save(f"images/{image_name}")
   return "yes"
 
 
