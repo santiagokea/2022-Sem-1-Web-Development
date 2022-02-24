@@ -1,4 +1,4 @@
-from bottle import post, request, response, run
+from bottle import get, post, request, response, run
 import os
 import uuid
 import imghdr
@@ -10,9 +10,9 @@ from email.mime.multipart import MIMEMultipart
 ##############################
 @get("/send-email")
 def _():
-  sender_email = "EMAIL_HERE"
-  receiver_email = "EMAIL_HERE"
-  password = "PASSWORD_HERE"
+  sender_email = "2022webemail@gmail.com"
+  receiver_email = "2022webemail@gmail.com"
+  password = "2022webemailpassword"
 
   message = MIMEMultipart("alternative")
   message["Subject"] = "My Company"
@@ -30,7 +30,7 @@ def _():
     <body>
       <p>
         Hi,<br>
-        <b>How are you?</b><br>
+        <b style="color: blue;">How are you?</b><br>
       </p>
     </body>
   </html>
@@ -101,7 +101,7 @@ def _():
 
 
 ##############################
-run(host="127.0.0.1", port=3333, debug=True, reloader=True, server="paste")
+run(host="127.0.0.1", port=3333, debug=True, reloader=True)
 
 
 
