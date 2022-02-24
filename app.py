@@ -2,7 +2,7 @@ from bottle import get, post, request, response, run
 import os
 import uuid
 import imghdr
-from password import gmail_password
+from password import gmail_password # this file you musr create your self. It is not on github
 
 import smtplib, ssl
 from email.mime.text import MIMEText
