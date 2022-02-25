@@ -1,0 +1,6 @@
+TWEET_MIN_LEN = 1
+TWEET_MAX_LEN = 100
+
+
+
+
