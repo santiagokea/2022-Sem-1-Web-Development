@@ -37,6 +37,7 @@ def _():
       "tweet_id" : tweet_id,
       "tweet_text" : tweet_text,
       "tweet_created_at" : tweet_created_at
+      "tweet_updated_at" : 0
     }
     tweets[tweet_id] = tweet
 
