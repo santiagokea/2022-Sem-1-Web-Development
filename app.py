@@ -51,7 +51,34 @@ def _():
 ##############################
 @put("/tweets/<id>")
 def _(id):
-  pass
+  try:
+    # Validate id
+    if not re.match(g.REGEX_UUID4, id):
+      response.status = 204
+      return
+    if id not in tweets:
+      response.status = 204
+      return
+    # Validate tweet_text
+    if not request.forms.get("tweet_text"):
+      response.status = 400
+      return {"info":"tweet_text missing"}
+    tweet_text = request.forms.get("tweet_text").strip()
+    if len(tweet_text) < g.TWEET_MIN_LEN:
+      response.status = 400
+      return {"info":f"tweet_text min {g.TWEET_MIN_LEN}"}
+    if len(tweet_text) > g.TWEET_MAX_LEN:
+      response.status = 400
+      return {"info":f"tweet_text max {g.TWEET_MAX_LEN}"}      
+    # Update the tweet
+    tweets[id]["tweet_text"] = tweet_text
+    tweets[id]["tweet_update_at"] = int(time.time())
+    # Success
+    return tweets[id]
+  except Exception as ex:
+    print(ex)
+    response.status = 500
+    return {"info":"uppps... something went wrong"}
 
 
 
