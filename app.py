@@ -2,6 +2,7 @@ from bottle import default_app, delete, get, post, put, request, response, run, 
 import g
 import uuid
 import time
+import re
 
 # print("#"*30)
 # print(dir(time))
@@ -59,10 +60,22 @@ def _(id):
 
 ##############################
 @get("/tweets/<id>")
+#@get("/tweets/<id>/")
 def _(id):
   try:
+    # Validate
+    if not re.match(g.REGEX_UUID4, id):
+      response.status = 204
+      return
+    
+    # Tweet not found
+    if id not in tweets[id]:
+      response.status = 204
+      return
+
     # Success
-    return {}
+    return tweets[id]
+    
   except Exception as ex:
     print(ex)
     response.status = 500
