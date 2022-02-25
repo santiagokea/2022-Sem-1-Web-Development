@@ -14,32 +14,38 @@ tweets = {}
 ##############################
 @post("/tweets")
 def _():
-  # Validate
-  if not request.forms.get("tweet_text"):
-    response.status = 400
-    return "tweet_text missing"
+  try:
+    # Validate
+    if not request.forms.get("tweet_text"):
+      response.status = 400
+      return "tweet_text missing"
 
-  tweet_text = request.forms.get("tweet_text").strip()
-  
-  if len(tweet_text) < g.TWEET_MIN_LEN:
-    response.status = 400
-    return f"tweet min {g.TWEET_MIN_LEN}"
+    tweet_text = request.forms.get("tweet_text").strip()
+    
+    if len(tweet_text) < g.TWEET_MIN_LEN:
+      response.status = 400
+      return f"tweet min {g.TWEET_MIN_LEN}"
 
-  if len(tweet_text) > g.TWEET_MAX_LEN:
-    response.status = 400
-    return f"tweet max {g.TWEET_MAX_LEN}"
+    if len(tweet_text) > g.TWEET_MAX_LEN:
+      response.status = 400
+      return f"tweet max {g.TWEET_MAX_LEN}"
+    xxx
+    tweet_id = str(uuid.uuid4())
+    tweet_created_at = int(time.time())
+    tweet = {
+      "tweet_id" : tweet_id,
+      "tweet_text" : tweet_text,
+      "tweet_created_at" : tweet_created_at
+    }
+    tweets[tweet_id] = tweet
 
-  tweet_id = str(uuid.uuid4())
-  tweet_created_at = int(time.time())
-  tweet = {
-    "tweet_id" : tweet_id,
-    "tweet_text" : tweet_text,
-    "tweet_created_at" : tweet_created_at
-  }
-  tweets[tweet_id] = tweet
-
-  # Success  
-  return {"info":f"New tweet created with id {tweet_id}"}
+    # Success 
+    response.status = 201 
+    return {"tweet_id":tweet_id}
+  except Exception as ex:
+    print(ex)
+    response.status = 500
+    return {"info":"uppps... something went wrong"}
 
 ##############################
 @put("/tweets/<id>")
