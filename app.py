@@ -69,7 +69,7 @@ def _(id):
       return
     
     # Tweet not found
-    if id not in tweets[id]:
+    if id not in tweets:
       response.status = 204
       return
 
