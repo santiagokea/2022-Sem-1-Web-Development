@@ -29,7 +29,7 @@ def _():
     if len(tweet_text) > g.TWEET_MAX_LEN:
       response.status = 400
       return f"tweet max {g.TWEET_MAX_LEN}"
-    xxx
+
     tweet_id = str(uuid.uuid4())
     tweet_created_at = int(time.time())
     tweet = {
@@ -60,12 +60,23 @@ def _(id):
 ##############################
 @get("/tweets/<id>")
 def _(id):
-  return "this is the tweet"
+  try:
+    # Success
+    return {}
+  except Exception as ex:
+    print(ex)
+    response.status = 500
+    return {"info":"uppps... something went wrong"}
 
 ##############################
 @get("/tweets")
 def _():
-  return tweets
+  try:
+    return tweets
+  except Exception as ex:
+    print(ex)
+    response.status = 500
+    return {"info":"uppps... something went wrong"}  
 
 
 ##############################
