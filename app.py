@@ -51,12 +51,32 @@ def _():
 ##############################
 @put("/tweets/<id>")
 def _(id):
-  return "tweet updated"
+  pass
+
+
+
+
+
 
 ##############################
 @delete("/tweets/<id>")
 def _(id):
-  return "tweet deleted"
+  try:
+    if not re.match(g.REGEX_UUID4, id):
+      response.status = 204
+      return
+    # Check if tweet id is inside the tweets
+    if id not in tweets:
+      response.status = 204
+      return
+    # Delete the tweet
+    tweets.pop(id)
+    return {"info":"tweet deleted"}
+
+  except Exception as ex:
+    print(ex)
+    response.status = 500
+    return {"info":"uppps... something went wrong"}
 
 ##############################
 @get("/tweets/<id>")
