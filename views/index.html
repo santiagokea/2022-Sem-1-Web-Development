@@ -32,7 +32,7 @@
       // console.log(event) // click
       // console.log(event.target) // button
       // console.log(event.target.form) // form
-      const connection = await fetch("/tweet", {
+      const connection = await fetch("/tweets", {
         method : "POST",
         body : new FormData(form)
       })
