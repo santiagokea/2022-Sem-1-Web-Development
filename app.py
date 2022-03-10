@@ -24,6 +24,17 @@ def _():
   }
   return tweet
 
+
+##############################
+@post("/likes/<tweet_id>")
+def _(tweet_id):
+  # Validete
+  # Who likes it? The user who is logged
+  # connect to the db
+  # update/insert the liked tweet
+  return "ok"
+
+
 ##############################
 @delete("/tweets/<tweet_id>")
 def _(tweet_id):

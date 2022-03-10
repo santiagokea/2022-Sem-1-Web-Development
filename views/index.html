@@ -62,6 +62,8 @@
       <form onsubmit="return false" style="border: 1px solid blue;">
         <div id="tweet_id">${tweet.tweet_id}</div>
         <div id="tweet_text">${tweet.tweet_text}</div>
+        <button>Like</button>
+        <button>Dislike</button>
         <button onclick="delete_tweet()">Delete tweet</button>
       </form>`
       document.querySelector("#tweets").insertAdjacentHTML("afterbegin", section_tweet)
