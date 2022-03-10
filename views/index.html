@@ -12,6 +12,7 @@
     <form onsubmit="return false">
       <input name="tweet_text" type="text" placeholder="What?">
       <button onclick="tweet()">Tweet</button>
+      <div id="tweet_id"></div>
     </form>
   </section>
 
@@ -27,7 +28,11 @@
       // console.log(connection)
       if(!connection.ok){
         alert("Could not tweet")
+        return
       }
+      // Success
+      let tweet_id = await connection.text()
+      document.querySelector("#tweet_id").innerHTML = tweet_id
     }
   </script>
 
