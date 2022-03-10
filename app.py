@@ -15,8 +15,14 @@ def _():
   # Connect to the db
   # Insert the tweet in the tweets table
   # response.status = 200
+  tweet_text = request.forms.get("tweet_text")
+  print(tweet_text)
   tweet_id = str(uuid.uuid4())
-  return tweet_id
+  tweet = {
+    "tweet_id" : tweet_id,
+    "tweet_text" : tweet_text
+  }
+  return tweet
 
 
 

@@ -13,17 +13,20 @@
       <input name="tweet_text" type="text" placeholder="What?">
       <button onclick="tweet()">Tweet</button>
       <div id="tweet_id"></div>
+      <div id="tweet_text"></div>
     </form>
   </section>
 
   <script>
     // The function must async
     async function tweet(){
+      const form = event.target.form
       // console.log(event) // click
       // console.log(event.target) // button
       // console.log(event.target.form) // form
       const connection = await fetch("/tweet", {
-        method : "POST"
+        method : "POST",
+        body : new FormData(form)
       })
       // console.log(connection)
       if(!connection.ok){
@@ -31,8 +34,9 @@
         return
       }
       // Success
-      let tweet_id = await connection.text()
-      document.querySelector("#tweet_id").innerHTML = tweet_id
+      let tweet = await connection.json()
+      document.querySelector("#tweet_id").innerHTML = tweet.tweet_id
+      document.querySelector("#tweet_text").innerHTML = tweet.tweet_text
     }
   </script>
 
