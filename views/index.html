@@ -8,14 +8,22 @@
 </head>
 <body>
 
+
+
   <section>
     <form onsubmit="return false">
       <input name="tweet_text" type="text" placeholder="What?">
       <button onclick="tweet()">Tweet</button>
-      <div id="tweet_id"></div>
-      <div id="tweet_text"></div>
     </form>
   </section>
+  
+
+
+  <section id="tweets">
+  </section>
+
+
+
 
   <script>
     // The function must async
@@ -35,8 +43,13 @@
       }
       // Success
       let tweet = await connection.json()
-      document.querySelector("#tweet_id").innerHTML = tweet.tweet_id
-      document.querySelector("#tweet_text").innerHTML = tweet.tweet_text
+      let section_tweet = `
+      <section style="border: 1px solid blue;">
+        <div id="tweet_id">1</div>
+        <div id="tweet_text">a</div>
+        <button>Delete tweet</button>
+      </section>`
+      document.querySelector("#tweets").insertAdjacentHTML("afterbegin", section_tweet)
     }
   </script>
 
