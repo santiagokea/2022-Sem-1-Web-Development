@@ -26,6 +26,21 @@
 
 
   <script>
+
+    async function delete_tweet(){
+      const form = event.target.form
+      const connection = await fetch("/tweets/1", {
+        method : "DELETE"
+      })
+      if(!connection.ok){
+        alert("Could not delete tweet")
+        return
+      }      
+      const response = await connection.text()
+      form.remove()
+    }
+
+
     // The function must async
     async function tweet(){
       const form = event.target.form
@@ -44,11 +59,11 @@
       // Success
       let tweet = await connection.json()
       let section_tweet = `
-      <section style="border: 1px solid blue;">
+      <form onsubmit="return false" style="border: 1px solid blue;">
         <div id="tweet_id">${tweet.tweet_id}</div>
         <div id="tweet_text">${tweet.tweet_text}</div>
-        <button>Delete tweet</button>
-      </section>`
+        <button onclick="delete_tweet()">Delete tweet</button>
+      </form>`
       document.querySelector("#tweets").insertAdjacentHTML("afterbegin", section_tweet)
     }
   </script>
