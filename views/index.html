@@ -10,7 +10,7 @@
 
   <section>
     <form onsubmit="return false">
-      <input type="text" placeholder="What?">
+      <input name="tweet_text" type="text" placeholder="What?">
       <button onclick="tweet()">Tweet</button>
     </form>
   </section>
@@ -18,7 +18,16 @@
   <script>
     // The function must async
     async function tweet(){
-      console.log("x")
+      // console.log(event) // click
+      // console.log(event.target) // button
+      // console.log(event.target.form) // form
+      const connection = await fetch("/tweet", {
+        method : "POST"
+      })
+      // console.log(connection)
+      if(!connection.ok){
+        alert("Could not tweet")
+      }
     }
   </script>
 

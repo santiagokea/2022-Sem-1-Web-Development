@@ -14,6 +14,7 @@ def _():
   # Validate
   # Connect to the db
   # Insert the tweet in the tweets table
+  # response.status = 200
   tweet_id = str(uuid.uuid4())
   return tweet_id
 
