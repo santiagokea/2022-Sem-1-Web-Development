@@ -9,11 +9,19 @@
 <body>
 
   <section>
-    <form>
+    <form onsubmit="return false">
       <input type="text" placeholder="What?">
-      <button>Tweet</button>
+      <button onclick="tweet()">Tweet</button>
     </form>
   </section>
+
+  <script>
+    // The function must async
+    async function tweet(){
+      console.log("x")
+    }
+  </script>
+
 
 </body>
 </html>
