@@ -45,8 +45,8 @@
       let tweet = await connection.json()
       let section_tweet = `
       <section style="border: 1px solid blue;">
-        <div id="tweet_id">1</div>
-        <div id="tweet_text">a</div>
+        <div id="tweet_id">${tweet.tweet_id}</div>
+        <div id="tweet_text">${tweet.tweet_text}</div>
         <button>Delete tweet</button>
       </section>`
       document.querySelector("#tweets").insertAdjacentHTML("afterbegin", section_tweet)
